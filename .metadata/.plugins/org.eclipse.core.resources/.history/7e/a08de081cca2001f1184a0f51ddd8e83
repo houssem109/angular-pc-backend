@@ -1,0 +1,92 @@
+package com.houssem.pcs;
+
+import java.util.Date;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.houssem.pcs.entities.Marque;
+import com.houssem.pcs.entities.Pc;
+import com.houssem.pcs.repos.PcRepository;
+
+@SpringBootTest
+class PcsApplicationTests {
+
+	@Autowired
+	private PcRepository PcRepository;
+	@Test
+	public void testCreatePc() {
+	Pc pc = new Pc("Gf63","i5-13650H",16,500,"none","Windows11",2200.500,new Date(),"houssembenjaafar105@gmail.com");
+	PcRepository.save(pc);
+	}
+	@Test
+	public void testFindPc()
+	{
+	Pc p = PcRepository.findById(1L).get();
+	System.out.println(p);
+	}
+	@Test
+	public void testUpdatePc()
+	{
+		Pc p = PcRepository.findById(1L).get();
+		p.setPrix(1000.0);
+		PcRepository.save(p);
+	}
+	@Test
+	public void testDeletePc()
+	{
+		PcRepository.deleteById(1L);;
+	}
+	@Test
+	public void testListerTousPcs()
+	{
+		List<Pc>
+		pcs = PcRepository.findAll();
+		for (Pc p : pcs)
+		{
+			System.out.println(p);
+		}
+	}
+	@Test
+	public void testFindPcByModele()
+	{
+	List<Pc> pcs = PcRepository.findByModele("GF63");
+	for (Pc p : pcs)
+	{
+		System.out.println(p);
+	}
+	}
+	@Test
+	public void testFindPcByModeleContains()
+	{
+	List<Pc> pcs = PcRepository.findByModeleContains("G");
+	for (Pc p : pcs)
+	{
+		System.out.println(p);
+	}
+	}
+	@Test
+	public void testfindByModelePrix()
+	{
+	List<Pc> pcs = PcRepository.findByModelePrix("GF63",1000.0);
+	for (Pc p : pcs)
+	{
+	System.out.println(p);
+	}
+	}
+	@Test
+	public void testfindByCategorie()
+	{
+	Marque mar = new Marque();
+	mar.setIdMarque(1L);
+	List<Pc> pcs = PcRepository.findByMarque(mar);
+	for (Pc p : pcs)
+	{
+	System.out.println(p);
+	}
+	}
+
+
+}

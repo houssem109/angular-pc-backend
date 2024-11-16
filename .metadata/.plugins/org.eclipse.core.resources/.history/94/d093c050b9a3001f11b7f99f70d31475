@@ -1,0 +1,5 @@
+package com.houssem.users.service;
+
+public interface UserService {
+
+}

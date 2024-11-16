@@ -1,0 +1,43 @@
+package com.houssem.users.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.houssem.users.entities.Role;
+import com.houssem.users.entities.User;
+import com.houssem.users.repos.RoleRepository;
+import com.houssem.users.repos.UserRepository;
+
+public class UserServicempl implements UserService {
+
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
+	@Override
+	public User saveUser(User user) {
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User findUserByUsername(String username) {
+		
+		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public Role addRole(Role role) {
+		return roleRepository.save(role);
+	}
+
+	@Override
+	public User addRoleToUser(String username, String rolename) {
+		User usr=userRepository.findByUsername(username);
+		Role role=roleRepository.findByRole(rolename);
+		usr.getRoles().add(role);
+		userRepository.save(usr);
+		return usr;
+	}
+
+}

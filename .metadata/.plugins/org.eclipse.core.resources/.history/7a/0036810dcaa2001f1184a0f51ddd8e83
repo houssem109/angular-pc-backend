@@ -1,0 +1,19 @@
+package com.houssem.pcs.repos;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.houssem.pcs.entities.Pc;
+
+public interface PcRepository extends JpaRepository<Pc, Long> {
+	
+	List<Pc> findByModele(String modele);
+	List<Pc> findByModeleContains(String modele);
+
+	@Query("select p from Pc p where p.modele like %?1 and p.prix > ?2")
+	List<Pc> findByModelePrix (String modele, Double prix);
+
+
+}

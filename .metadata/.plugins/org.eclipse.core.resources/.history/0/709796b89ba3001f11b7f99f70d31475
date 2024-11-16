@@ -1,0 +1,5 @@
+package com.houssem.pcs.entities;
+
+public interface PcProjection {
+
+}
