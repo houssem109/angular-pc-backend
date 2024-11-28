@@ -10,6 +10,7 @@ import com.houssem.pcs.entities.Marque;
 import com.houssem.pcs.entities.Pc;
 
 @SpringBootApplication
+
 public class PcsApplication implements CommandLineRunner {
 
 	@Autowired

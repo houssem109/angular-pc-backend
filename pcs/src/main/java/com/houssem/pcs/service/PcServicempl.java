@@ -3,6 +3,7 @@ package com.houssem.pcs.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.houssem.pcs.entities.Marque;
@@ -15,6 +16,7 @@ public class PcServicempl implements PcService{
 	PcRepository pcRepository;
 	
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Pc savePc(Pc p) {
 		return  pcRepository.save(p);
 	}
@@ -67,13 +69,11 @@ public class PcServicempl implements PcService{
 
 	@Override
 	public List<Pc> findByMarqueIdMarque(Long id) {
-		// TODO Auto-generated method stub
 		return pcRepository.findByMarqueIdMarque(id);
 	}
 
 	@Override
 	public List<Pc> findByOrderByModeleAsc() {
-		// TODO Auto-generated method stub
 		return pcRepository.findByOrderByModeleAsc();
 	}
 

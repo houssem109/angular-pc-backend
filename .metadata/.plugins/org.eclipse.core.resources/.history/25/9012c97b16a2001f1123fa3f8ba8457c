@@ -1,5 +1,0 @@
-package com.houssem.pcs.service;
-
-public interface PcService {
-
-}
