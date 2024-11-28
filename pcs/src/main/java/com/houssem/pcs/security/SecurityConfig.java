@@ -52,10 +52,8 @@ public class SecurityConfig {
 					requests.requestMatchers("/api/all/**").hasAnyAuthority("ADMIN","USER")
 					.requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN","USER")
 					//.requestMatchers(HttpMethod.POST,"/api/addpc/**").hasAnyAuthority("ADMIN")
-
 					.requestMatchers(HttpMethod.PUT,"/api/updatepc/**").hasAuthority("ADMIN")
 					.requestMatchers(HttpMethod.DELETE,"/api/delpc/**").hasAuthority("ADMIN")
-
 				.anyRequest().authenticated())
 				
 				
